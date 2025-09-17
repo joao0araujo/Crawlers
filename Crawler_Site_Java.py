@@ -12,4 +12,10 @@ response = requests.get(
     params={"q": "jsp"}
 )
 
-print(response.content)
+# print(response.content)
+
+contexto = BeautifulSoup(response.content, 'html.parser')
+
+seleciona_posts = contexto.select(".blog-posts.hfeed.container .post-outer")
+
+print(seleciona_posts[0].select(".post-title.entry-title")[0].text.strip())
